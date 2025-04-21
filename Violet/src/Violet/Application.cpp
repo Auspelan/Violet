@@ -1,31 +1,27 @@
+#include "vlpch.h"
 #include "Application.h"
 
 #include "Violet/Events/ApplicationEvent.h"
 #include "Violet/Log.h"
 
-#include <iostream>
+#include "GLFW/glfw3.h"
+
 
 namespace Violet {
 
-	Application::Application() {}
+	Application::Application() 
+	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
+	}
 	Application::~Application() {}
-
+	
 	void Application::Run() 
 	{
-		WindowResizeEvent e(1280,720);
-		if (e.IsInCategory(EventCategoryApplication))
+		while (m_Running)
 		{
-			VL_TRACE(e.ToString());
-		}
-		if (e.IsInCategory(EventCategoryInput))
-		{
-			VL_TRACE(e.ToString());
+			m_Window->OnUpdate();
 		}
 
-		while (true)
-		{
-
-		}
 	}
 
 }

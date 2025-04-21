@@ -1,9 +1,8 @@
 #pragma once
 
+#include "vlpch.h"
 #include "Violet/Core.h"
 
-#include <string>
-#include <functional>
 
 namespace Violet{
 	

@@ -10,6 +10,12 @@ workspace "Violet"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+--Include directiories relative to root folder
+IncludeDir = {}
+IncludeDir["GLFW"] = "Violet/vendor/GLFW/include"
+
+include "Violet/vendor/GLFW"
+
 project "Violet"
 	location "Violet"
 	kind "SharedLib"
@@ -17,6 +23,9 @@ project "Violet"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "vlpch.h"
+	pchsource "Violet/src/Violet/vlpch.cpp"
 
 	files
 	{
@@ -27,7 +36,14 @@ project "Violet"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
