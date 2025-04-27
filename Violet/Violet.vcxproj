@@ -149,6 +149,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Violet\LayerStack.h" />
+    <ClInclude Include="src\Violet\Layer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Violet.h" />
     <ClInclude Include="src\Violet\Application.h" />
@@ -163,6 +165,8 @@
     <ClInclude Include="src\vlpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Violet\LayerStack.cpp" />
+    <ClCompile Include="src\Violet\Layer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Violet\Application.cpp" />
     <ClCompile Include="src\Violet\Log.cpp" />
