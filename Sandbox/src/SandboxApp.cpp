@@ -24,8 +24,6 @@ private:
 
 
 
-
-
 /*
 Sandbox类
 //用于创建沙盒程序
@@ -36,6 +34,7 @@ public:
 	Sandbox() 
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Violet::ImGuiLayer());
 	}
 
 	~Sandbox() 

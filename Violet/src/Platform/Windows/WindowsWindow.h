@@ -4,6 +4,8 @@
 
 #include <GLFW/glfw3.h>
 
+struct GLFWwindow;
+
 namespace Violet {
 
 	class WindowsWindow : public Window 

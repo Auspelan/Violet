@@ -13,8 +13,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 --Include directiories relative to root folder
 IncludeDir = {}
 IncludeDir["GLFW"] = "Violet/vendor/GLFW/include"
+IncludeDir["Glad"] = "Violet/vendor/Glad/include"
+IncludeDir["ImGui"] = "Violet/vendor/imgui"
+
 
 include "Violet/vendor/GLFW"
+include "Violet/vendor/Glad"
+include "Violet/vendor/imgui"
 
 project "Violet"
 	location "Violet"
@@ -25,7 +30,7 @@ project "Violet"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	pchheader "vlpch.h"
-	pchsource "Violet/src/Violet/vlpch.cpp"
+	pchsource "Violet/src/vlpch.cpp"
 
 	files
 	{
@@ -37,12 +42,16 @@ project "Violet"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -54,7 +63,8 @@ project "Violet"
 		defines
 		{
 			"VL_PLATFORM_WINDOWS",
-			"VL_BUILD_DLL"
+			"VL_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -65,18 +75,18 @@ project "Violet"
 	filter "configurations:Debug"
 		defines "VL_DEBUG"
 		symbols "On"
-		buildoptions "/utf-8"
+		buildoptions {"/utf-8", "/MDd"}
 
 	filter "configurations:Debug"
 		defines "VL_RElEASE"
 		optimize "On"
-		buildoptions "/utf-8"
+		buildoptions {"/utf-8", "/MD"}
 
 
 	filter "configurations:Debug"
 		defines "VL_DIST"
 		optimize "On"
-		buildoptions "/utf-8"
+		buildoptions {"/utf-8", "/MD"}
 
 project "Sandbox"
 	location "Sandbox"
@@ -116,15 +126,15 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "VL_DEBUG"
 		symbols "On"
-		buildoptions "/utf-8"
+		buildoptions {"/utf-8", "/MDd"}
 
 	filter "configurations:Debug"
 		defines "VL_RElEASE"
 		optimize "On"
-		buildoptions "/utf-8"
+		buildoptions {"/utf-8", "/MD"}
 
 
 	filter "configurations:Debug"
 		defines "VL_DIST"
 		optimize "On"
-		buildoptions "/utf-8"
+		buildoptions {"/utf-8", "/MD"}
