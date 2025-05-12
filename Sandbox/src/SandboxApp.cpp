@@ -9,7 +9,7 @@ public:
 
 	void OnUpdate() override
 	{
-		VL_INFO("ExampleLayer::Update");
+		//VL_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(Violet::Event& event) override
